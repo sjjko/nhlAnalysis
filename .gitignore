@@ -1,0 +1,34 @@
+/sicherung
+.RData
+.Rhistory
+.idea/
+.ipynb_checkpoints/
+	NHLstat.pyc
+	R/
+	dataMiningNHL.ipynb
+dataSetsNHL/old/
+dataSetsNHL/sicherung/
+drugBank/
+ipython/.ipynb_checkpoints/
+ipython/dataSetsNHL
+ipython/neuralNHL.ipynb.old
+nhl/
+sonstiges/
+old/
+R/doc
+R/*.c
+R/*.o
+R/*.so
+R/*.R
+R/*.r
+R/*.pdf
+*.log
+/test
+/testbed
+testMinerClass.py
+R/*.dat
+python/setupNhlDataC.pyc
+latex/
+*.dat
+protein/
+*.html

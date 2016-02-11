@@ -1,56 +1,27 @@
 __author__ = 'kos'
 
-import nhlscrapi as nhl
-from nhlscrapi.games import game as gm
-from nhlscrapi.games.rosters import Rosters
-from nhlscrapi.games.game import Game, GameKey, GameType
-from nhlscrapi.games.toi import TOI
-import sys
-from sys import *
-from nhlscrapi import constants as C
+import copy as cp
+
+
 from datetime import date
 import os
+import sys
 import numpy as np
-
 import Tkinter as tk
 from Tkinter import *
 from tkFileDialog import *
-
-import copy as cp
-
+from nhlscrapi.games.game import Game, GameKey, GameType
+from utils import small_util_routines
 
 critical=1
 nonCritical=0
 
 GLOBAL_VERBOSITY_LEVEL=1
 
-def ToassertF(test,iscritical,*args):
-
-    message=""
-    for arg in args:
-        message=message+str(arg)
-
-    """simple routine for reporting errors - alternative to exception raising"""
-    if not test:
-        print message
-        if iscritical:
-            print "is a critical error - exit"
-            exit(-1)
-
-def VerbosityF(verbosityLevel,*args):
-
-    message=""
-    for arg in args:
-        message=message+str(arg)
-
-    """print message according to the globally set verbosity level"""
-    if GLOBAL_VERBOSITY_LEVEL>verbosityLevel:
-            print message
-
-
-def EnumF(*sequential, **named):
-        enums = dict(zip(sequential, range(len(sequential))), **named)
-        return type('Enum', (), enums)
+utC=small_util_routines(GLOBAL_VERBOSITY_LEVEL)
+VerbosityF=utC.VerbosityF
+ToassertF=utC.ToassertF
+EnumF=utC.EnumF
 
 """
     this class implements harvesting and
@@ -64,7 +35,7 @@ def EnumF(*sequential, **named):
 class MinerC():
 
 
-    """        class for mining NHL game data"""
+    """ class for mining NHL game data"""
 
     def __init__(self,seasonList,withPlayoffGames):
         """initialize data structures for data scraping"""
@@ -90,7 +61,7 @@ class MinerC():
             #do nothing - empty list
             self._seasonList=[]
 
-        if self._includingPlayoffGames:
+        if withPlayoffGames:
             self._gameTypeList=[GameType.Regular,GameType.Playoffs]
         else:
             self._gameTypeList=[GameType.Regular]

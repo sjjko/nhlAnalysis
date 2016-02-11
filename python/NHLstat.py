@@ -8,6 +8,7 @@ try:
     from setupNhlDataC import prepareDataC
     from scipy import signal
     import math
+    from utils import small_util_routines
 
 except ImportError:
     pass
@@ -17,33 +18,14 @@ nonCritical=0
 
 GLOBAL_VERBOSITY_LEVEL=1
 
+utC=small_util_routines(GLOBAL_VERBOSITY_LEVEL)
+VerbosityF=utC.VerbosityF
+ToassertF=utC.ToassertF
+
 #class names start uppercase, end with upper C
 #function names start uppercase, end with upper F
 #local class variables start with single underscore
 #global class variable start with double underscore
-
-def ToassertF(test,iscritical,*args):
-
-    message=""
-    for arg in args:
-        message=message+str(arg)
-
-    """simple routine for reporting errors - alternative to exception raising"""
-    if not test:
-        print message
-        if iscritical:
-            print "is a critical error - exit"
-            exit(-1)
-
-def VerbosityF(verbosityLevel,*args):
-
-    message=""
-    for arg in args:
-        message=message+str(arg)
-
-    """print message according to the globally set verbosity level"""
-    if GLOBAL_VERBOSITY_LEVEL>verbosityLevel:
-            print message
 
 
 #derived from a prepare data class, from which it derives the data directly, instead of having to give
@@ -77,7 +59,6 @@ class AnalysisC():#prepareDataC):
         self.__gesamtDatenGeneratedUnCorrelated=prepareDataC._gesamtDatenGeneratedUnCorrelated
         self.__gesamtDatenGeneratedCorrelated=prepareDataC._gesamtDatenGeneratedCorrelated
 
-
         VerbosityF(3,"gesamtDatenDict has the following keys:")
         VerbosityF(3,self.__gesamtDatenDict.keys())
         #pick out the first season data and fetch all the teams names for later reference
@@ -87,27 +68,32 @@ class AnalysisC():#prepareDataC):
         VerbosityF(0,"AnalysisC class instance successfully initialized!")
 
     def GetSeasonList(self,dataID):
+        """return list of seasons for imported game data"""
         dataDict=self.Dataselector(dataID)
         #the season list is just a query on the keys of the dict
         return dataDict.keys()
 
-
     def GetTeamList(self):
+        """get list of teams for imported game data"""
         return self._TeamList
 
     def GetEN(self):
+        """return the enumeration object containing the data categories of imported game data"""
         return self.__EN
 
     def GetENList(self):
+        """return the enumeration object containing the data categories of imported game data"""
         return self.__ENList
 
     def GetDataSetType(self):
+        """return the dataset type: summed, delta or generated data"""
         return self.__DataSetType
 
     def GetDataSetTypeList(self):
         return self.__DataSetTypeList
 
     def Dataselector(self,dataID):
+        """return the dataset among the bunch of delta, summed and generated datasets"""
         if dataID==self.__DataSetType.delta:
             return self.GetGesamtDaten()
         if dataID==self.__DataSetType.summed:
