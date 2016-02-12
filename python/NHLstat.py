@@ -9,9 +9,9 @@ try:
     from scipy import signal
     import math
     from utils import small_util_routines
-
 except ImportError:
-    pass
+    raise ImportError('Module not found')
+
 
 critical=1
 nonCritical=0
