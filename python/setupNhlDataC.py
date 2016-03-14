@@ -2,7 +2,17 @@ __author__ = 'kos'
 
 import copy as cp
 
-
+try:
+    import os
+    import numpy as np
+    import sys
+    import matplotlib.pyplot as plt
+    from setupNhlDataC import prepareDataC
+    from scipy import signal
+    import math
+    from utils import small_util_routines
+except ImportError:
+    raise ImportError('Module not found')
 from datetime import date
 import os
 import sys
@@ -275,8 +285,6 @@ class MinerC():
             except:
                 print "Unexpected error:", sys.exc_info()[0]
                 raise
-
-
 
 class prepareDataC():
     """prepare data for use in statistical analysis"""

@@ -168,8 +168,6 @@ class AnalysisC():#prepareDataC):
 
         return listOfGameDayAveragedValues
 
-
-
 class NeuralNetworkAnalysisC():
     """not really derived from AnalysisC, just lends some methods and shared data for all methods"""
 
