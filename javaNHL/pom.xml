@@ -25,9 +25,9 @@
     </inceptionYear>
 
     <scm>
-        <connection>git</connection>
-        <developerConnection>scm:svn:https://noonecares.com/some/plugin/project/trunk</developerConnection>
-        <url>http://noonecares.com/viewvc/some/project/trunk/</url>
+        <connection>scm:git:https://github.com/sjjko/nhlAnalysis/tree/master/javaNHL</connection>
+        <developerConnection>scm:git:https://github.com/sjjko/nhlAnalysis/tree/master/javaNHL</developerConnection>
+        <url>https://github.com/sjjko/nhlAnalysis/tree/master/javaNHL</url>
     </scm>
     <organization>
         <name>Stefan Josef Johann Konzett Stoffl Software</name>
@@ -253,6 +253,16 @@
             <artifactId>junit</artifactId>
             <version>4.0</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.0</version>
         </dependency>
 
     </dependencies>
