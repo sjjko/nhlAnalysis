@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>javaNHL</groupId>
+    <artifactId>javaNHLAnalysis</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>analysisJavaNHLData</name>
+    <url>http://sjjko.github.io/</url>
+    <licenses>
+        <license>
+            <name>GNU GENERAL PUBLIC LICENSE, Version 3.0</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.de.html</url>
+            <distribution>exp</distribution>
+        </license>
+    </licenses>
+    <description>
+        clustering of NHL game data using weka and sql
+    </description>
+    <inceptionYear>
+        2016
+    </inceptionYear>
+
+    <scm>
+        <connection>git</connection>
+        <developerConnection>scm:svn:https://noonecares.com/some/plugin/project/trunk</developerConnection>
+        <url>http://noonecares.com/viewvc/some/project/trunk/</url>
+    </scm>
+    <organization>
+        <name>Stefan Josef Johann Konzett Stoffl Software</name>
+        <url>http://sjjko.github.io/</url>
+    </organization>
+
+
+
+    <build>
+        <finalName>javaNHLAnalysis</finalName>
+    </build>
+
+    <!-- Profile to run jetty, so the tomcat jars are included in the bundle. They are not included by default -->
+    <profiles>
+        <profile>
+            <id>jettyConfig</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.mortbay.jetty</groupId>
+                        <artifactId>maven-jetty-plugin</artifactId>
+                        <configuration>
+                            <scanIntervalSeconds>10</scanIntervalSeconds>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+
+            <dependencies>
+
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>5.1.18</version>
+                </dependency>
+
+
+                <dependency>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>jsp-api</artifactId>
+                    <version>2.0</version>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>tomcat</groupId>
+                    <artifactId>jasper-compiler</artifactId>
+                    <version>5.5.9</version>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>tomcat</groupId>
+                    <artifactId>jasper-runtime</artifactId>
+                    <version>5.5.9</version>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>tomcat</groupId>
+                    <artifactId>jasper-compiler-jdt</artifactId>
+                    <version>5.5.9</version>
+                    <scope>compile</scope>
+                </dependency>
+            </dependencies>
+
+            <pluginRepositories>
+                <!-- Repository to get the jetty plugin -->
+                <pluginRepository>
+                    <id>mortbay-repo</id>
+                    <name>mortbay-repo</name>
+                    <url>http://www.mortbay.org/maven2/snapshot</url>
+                </pluginRepository>
+            </pluginRepositories>
+
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>apache-maven-snapshots</id>
+            <url>http://people.apache.org/repo/m2-snapshot-repository</url>
+        </repository>
+        <repository>
+            <id>java.net</id>
+            <url>http://download.java.net/maven/1</url>
+            <layout>legacy</layout>
+        </repository>
+    </repositories>
+
+    <!-- Project dependencies -->
+    <dependencies>
+
+            <dependency>
+                <groupId>com.webfirmframework</groupId>
+                <artifactId>wffweb</artifactId>
+                <version>1.0.0-alpha-4</version>
+            </dependency>
+
+        <dependency>
+            <groupId>com.j2html</groupId>
+            <artifactId>j2html</artifactId>
+            <version>0.7</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.rendersnake</groupId>
+            <artifactId>rendersnake</artifactId>
+            <version>1.8</version>
+        </dependency>
+
+        <!-- the data analysis jdmp -->
+        <dependency>
+            <groupId>org.jdmp</groupId>
+            <artifactId>jdmp-core</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jdmp</groupId>
+            <artifactId>jdmp-gui</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jdmp</groupId>
+            <artifactId>jdmp-core</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jdmp</groupId>
+            <artifactId>jdmp-gui</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jdmp</groupId>
+            <artifactId>jdmp-bsh</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jdmp</groupId>
+            <artifactId>jdmp-complete</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jdmp</groupId>
+            <artifactId>jdmp-corenlp</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jdmp</groupId>
+            <artifactId>jdmp-examples</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jdmp</groupId>
+            <artifactId>jdmp-jetty</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jdmp</groupId>
+            <artifactId>jdmp-liblinear</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jdmp</groupId>
+            <artifactId>jdmp-lucene</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jdmp</groupId>
+            <artifactId>jdmp-mallet</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jdmp</groupId>
+            <artifactId>jdmp-weka</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-api</artifactId>
+            <version>1.2.2</version>
+            <scope>compile</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.apache.myfaces.core</groupId>
+            <artifactId>myfaces-impl</artifactId>
+            <version>1.2.2</version>
+            <scope>compile</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.apache.myfaces.tomahawk</groupId>
+            <artifactId>tomahawk</artifactId>
+            <version>1.1.6</version>
+            <scope>runtime</scope>    
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>jstl</artifactId>
+                </exclusion>
+            </exclusions>    
+        </dependency>
+        
+        
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+            <scope>runtime</scope>
+        </dependency>        
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.0</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <configuration>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+
+</project>
